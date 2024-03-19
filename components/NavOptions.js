@@ -9,6 +9,7 @@ import {
 import React from "react";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
@@ -26,13 +27,17 @@ const data = [
 ];
 
 const NavOptions = () => {
+  const navigation = useNavigation();
   return (
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
       horizontal
       renderItem={({ item }) => (
-        <TouchableOpacity style={tw`bg-gray-200  p-2 pl-6 m-2  w-40 pb-8`}>
+        <TouchableOpacity
+          style={tw`bg-gray-200  p-2 pl-6 m-2  w-40 pb-8`}
+          onPress={() => navigation.navigate(item.screen)}
+        >
           <View>
             <Image
               style={{ width: 120, height: 120, resizeMode: "contain" }}
